@@ -3,16 +3,18 @@ import {createContext, useState} from 'react';
 export const AuthContext = createContext({
   token: '',
   isAuthenticated: false,
-  authenticate: () => {},
+  authenticate: (token) => {},
   logout: () => {},
 });
 
 const AuthContextProvider = ({children}) => {
   const [authToken, setAuthToken] = useState();
 
-  const authenticate = token => {
+  const authenticate = (token) => {
+    console.log('Authenticated with token:', token);
     setAuthToken(token);
   };
+
   const logout = () => {
     setAuthToken(null);
   };
